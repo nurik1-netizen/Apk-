@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APK Каталог</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+<style>
+:root{color-scheme:dark;--bg:#080910;--card:#11131e;--card2:#151827;--text:#f4f5ff;--muted:#969bb4;--a:#9b7cff;--b:#50e4d1;--bd:rgba(183,178,255,.15);--red:#ff657a;--sh:0 24px 70px rgba(0,0,0,.28);--ease:cubic-bezier(.2,.75,.25,1)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;background:radial-gradient(ellipse at 15% 8%,rgba(116,74,255,.13),transparent 34%),radial-gradient(ellipse at 85% 28%,rgba(53,218,201,.08),transparent 30%),linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:auto,auto,58px 58px,58px 58px;mask-image:linear-gradient(to bottom,#000,transparent 82%)}
+a{color:inherit}button,input,textarea{font:inherit}button{cursor:pointer;transition:transform .25s var(--ease),background .25s,border-color .25s,box-shadow .25s}button:hover,.d:hover{transform:translateY(-2px) scale(1.025)}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--b);outline-offset:3px}header{position:sticky;top:0;z-index:5;background:rgba(8,9,16,.78);backdrop-filter:blur(22px);border-bottom:1px solid var(--bd)}.hw{max-width:1160px;margin:0 auto;padding:18px 26px;display:flex;justify-content:space-between;align-items:center;gap:16px}.logo{font-weight:800;font-size:17px;letter-spacing:-.04em;display:flex;align-items:center;gap:10px}.logo:before{content:"✳";display:grid;place-items:center;width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,var(--a),var(--b));color:#080910;font-size:20px;box-shadow:0 0 28px #9878ff45}.u{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}.u img{width:32px;height:32px;border-radius:50%;border:1px solid var(--bd)}button{border:1px solid transparent;border-radius:12px;padding:11px 17px;font-weight:650;background:linear-gradient(115deg,#a58aff,#65e6d7);color:#0a0b12;box-shadow:0 8px 26px rgba(132,105,255,.18)}.g{background:rgba(255,255,255,.045);color:var(--text);border-color:var(--bd);box-shadow:none}.r{background:rgba(255,101,122,.13);color:#ff91a0;border-color:rgba(255,101,122,.22);box-shadow:none}.hero{position:relative;isolation:isolate;text-align:center;padding:clamp(78px,11vw,142px) 22px 110px;overflow:hidden;background:radial-gradient(ellipse at 50% 100%,rgba(123,91,255,.19),transparent 55%)}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none;z-index:-1;animation:float 12s ease-in-out infinite alternate}.hero:before{width:340px;height:340px;left:-130px;top:4%;background:radial-gradient(circle,rgba(123,91,255,.2),transparent 70%)}.hero:after{width:300px;height:300px;right:-100px;bottom:0;background:radial-gradient(circle,rgba(72,225,208,.16),transparent 70%);animation-delay:-4s}.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 12px;border:1px solid var(--bd);border-radius:99px;background:rgba(255,255,255,.035);font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:#c4b8ff}.eyebrow:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--b);box-shadow:0 0 12px var(--b)}.hero h1{max-width:1000px;margin:24px auto 0;font-size:clamp(48px,8.7vw,108px);line-height:.98;letter-spacing:-.075em;font-weight:760}.hero h1 span{display:block;background:linear-gradient(100deg,#f5f4ff 12%,#b7a2ff 48%,#68ead9 88%);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:550px;margin:25px auto 0;color:var(--muted);font-size:clamp(15px,1.7vw,18px)}.hero-cta{display:inline-flex;align-items:center;gap:10px;margin-top:30px;text-decoration:none;padding:14px 20px;border-radius:14px;background:linear-gradient(110deg,#aa91ff,#6ce8d7);color:#080910;font-weight:750;box-shadow:0 0 35px rgba(145,111,255,.25);transition:transform .25s var(--ease),box-shadow .25s}.hero-cta:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 0 50px rgba(145,111,255,.4)}.hero-cta span{font-size:19px}.w{max-width:1160px;margin:-32px auto 0;padding:0 26px 70px;position:relative}.banner{background:rgba(255,195,94,.1);color:#ffd58d;border:1px solid rgba(255,195,94,.22);border-radius:14px;padding:12px 16px;margin-bottom:18px;font-size:13px}.p{background:linear-gradient(145deg,rgba(22,24,39,.96),rgba(13,15,25,.96));border:1px solid var(--bd);border-radius:22px;padding:20px;margin-bottom:18px;box-shadow:var(--sh)}#adm b{font-size:16px;letter-spacing:-.02em}input,textarea,select{width:100%;padding:14px 15px;border-radius:13px;border:1px solid var(--bd);background:rgba(255,255,255,.035);color:var(--text);font-size:15px;margin-bottom:10px;font-family:inherit;transition:border-color .2s,background .2s}input::placeholder,textarea::placeholder{color:#777d96}input:focus,textarea:focus{border-color:rgba(160,132,255,.7);background:rgba(150,120,255,.05);outline:none}.chips{display:flex;gap:9px;overflow-x:auto;padding:4px 0 18px;scrollbar-width:thin}.chip{white-space:nowrap;padding:9px 15px;border-radius:99px;background:rgba(255,255,255,.035);color:var(--muted);border:1px solid var(--bd);font-size:13px}.chip.on,.chip:hover{background:rgba(155,124,255,.16);color:#e6ddff;border-color:rgba(155,124,255,.5)}.search-label{font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin:24px 0 10px}.catalog-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:35px 0 18px}.catalog-head h2{margin:0;font-size:clamp(26px,4vw,40px);letter-spacing:-.055em}.catalog-head p{margin:6px 0 0;color:var(--muted);font-size:14px}.grid{display:grid;gap:12px}.c{display:flex;align-items:center;gap:17px;background:linear-gradient(115deg,rgba(21,23,38,.9),rgba(13,15,25,.9));border:1px solid var(--bd);border-radius:19px;padding:17px;box-shadow:0 10px 30px rgba(0,0,0,.1);transition:transform .3s var(--ease),border-color .3s,box-shadow .3s;animation:fadeUp .6s var(--ease) both}.c:hover{transform:translateY(-3px);border-color:rgba(159,132,255,.48);box-shadow:0 18px 45px rgba(0,0,0,.25),0 0 24px rgba(137,105,255,.07)}.i{width:62px;height:62px;border-radius:18px;color:#fff;display:grid;place-items:center;font-size:26px;font-weight:700;flex:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 8px 20px rgba(0,0,0,.2)}.m{flex:1;min-width:0}.m b{display:block;font-size:17px;letter-spacing:-.025em;overflow-wrap:anywhere}.d2{color:var(--muted);font-size:13.5px;margin:4px 0}.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}.tag{font-size:11px;background:rgba(255,255,255,.035);border:1px solid rgba(183,178,255,.12);color:#a8aec6;padding:4px 9px;border-radius:99px}.act{display:flex;flex-direction:column;gap:7px;min-width:118px}.act button{font-size:12px;padding:9px 11px}.a.d{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(110deg,#aa91ff,#6ce8d7);color:#080910;text-decoration:none;padding:11px 15px;border-radius:12px;font-weight:750;text-align:center;white-space:nowrap;transition:transform .25s var(--ease),box-shadow .25s}.d:hover{box-shadow:0 0 24px rgba(155,124,255,.25)}.hint{font-size:12px;color:var(--muted)}.empty{text-align:center;color:var(--muted);padding:44px 0;border:1px dashed var(--bd);border-radius:18px}.banner{backdrop-filter:blur(10px)}details{background:rgba(255,255,255,.025);border:1px solid var(--bd);border-radius:15px;padding:14px 16px;margin-bottom:20px;font-size:14px;color:var(--muted)}summary{cursor:pointer;font-weight:650;color:var(--text)}details ol{padding-left:20px;line-height:1.9}.mod{position:fixed;inset:0;background:rgba(3,4,10,.78);backdrop-filter:blur(12px);display:none;place-items:center;z-index:9;padding:16px}.mb{background:#121421;border:1px solid var(--bd);border-radius:22px;padding:24px;width:100%;max-width:390px;box-shadow:0 30px 100px #0009}.mb h3{margin:0 0 18px;letter-spacing:-.04em}.mb button{width:100%;margin-bottom:10px}.gg{background:#f5f5f7;color:#15151a;border-color:#fff}.gh{background:#252938;color:#fff;border-color:#383d50}#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#f2efff;color:#171222;padding:12px 19px;border-radius:99px;font-size:13px;font-weight:650;display:none;z-index:20;box-shadow:0 10px 40px #0005}.foot{border-top:1px solid var(--bd);padding:25px 26px 35px;text-align:center;color:#737991;font-size:12px}.foot strong{color:#c9c1ed;font-weight:650}.reveal{animation:fadeUp .8s var(--ease) both}@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@keyframes float{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(35px,-25px,0) scale(1.12)}}@media(min-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.c{align-items:flex-start}.act{min-width:110px}.w{padding-bottom:90px}}@media(max-width:600px){.hw{padding:13px 16px}.logo{font-size:15px}.u{gap:6px;font-size:11px}.hero{padding:78px 18px 90px}.hero h1{font-size:clamp(43px,12vw,66px)}.w{padding:0 14px 50px}.c{gap:12px;padding:13px;flex-wrap:wrap}.i{width:52px;height:52px;border-radius:15px;font-size:23px}.m{width:calc(100% - 70px)}.m b{font-size:15px}.act{flex-direction:row;width:100%;min-width:0}.act>*{flex:1;min-width:0}.act .d{font-size:12px}.catalog-head{align-items:start;flex-direction:column;gap:5px}.p{padding:15px}.foot{padding:24px 16px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header><div class="hw"><span class="logo">📦 APK Каталог</span><div class="u" id="ua"></div></div></header>
+<section class="hero" aria-labelledby="hero-title"><div class="eyebrow">Ваш следующий уровень Android</div><h1 id="hero-title">Найди своё.<span>Установи новое.</span></h1><p>Подборка приложений и игр, которые делают Android по-настоящему твоим. Просто найти. Легко скачать.</p><a class="hero-cta" href="#catalog">Открыть каталог <span>↘</span></a></section>
+<div class="w">
+<div id="bn"></div>
+<div class="p" id="adm" style="display:none"><b id="pt">Админ: добавить APK</b><div style="height:10px"></div>
+<input id="nm" placeholder="Название *"><input id="ic" placeholder="Эмодзи-иконка (необязательно)" maxlength="4">
+<input id="ct" placeholder="Категория (Игры, Программы…)"><textarea id="ds" rows="2" placeholder="Описание"></textarea>
+<input id="vr" placeholder="Версия"><input id="sz" placeholder="Размер (25 МБ)"><input id="ur" placeholder="Прямая ссылка на APK *">
+<button id="sv">Добавить</button> <button class="g" id="cl">Очистить</button></div>
+<div class="catalog-head" id="catalog"><div><div class="eyebrow">Исследуй коллекцию</div><h2>Твоя библиотека приложений</h2><p>Найди нужное за несколько секунд.</p></div></div>
+<input id="q" placeholder="⌕  Поиск приложений и игр…" aria-label="Поиск приложения">
+<div class="chips" id="chips"></div>
+<details><summary>Как установить APK</summary><ol class="hint"><li>Нажмите «Скачать».</li><li>Разрешите установку из неизвестных источников.</li><li>Откройте файл и нажмите «Установить».</li></ol></details>
+<div class="grid" id="list"></div>
+<p class="hint" style="text-align:center;margin-top:24px">Скачивайте APK только из источников, которым доверяете.</p>
+</div>
+
+<div class="mod" id="mod"><div class="mb"><h3>Вход / регистрация</h3>
+<button class="gg" data-p="google">Войти через Google</button>
+<button class="gh" data-p="github">Войти через GitHub</button>
+<input id="em" type="email" placeholder="или ваша почта">
+<button id="ml">Получить ссылку для входа</button>
+<button class="g" id="mc">Закрыть</button></div></div>
+<footer class="foot"><strong>APK Каталог</strong> · Сделано для тех, кто любит Android. <span style="display:block;margin-top:6px">Проверяйте источник и разрешения каждого APK перед установкой.</span></footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+// ===== НАСТРОЙКИ: вставьте данные из Supabase (Project Settings -> API) =====
+var SB_URL="PASTE_SUPABASE_URL";
+var SB_KEY="PASTE_SUPABASE_ANON_KEY";
+var ADMINS=["admin@example.com"]; // замените на тот же email, что и в setup.sql
+var REQUIRE_LOGIN=false;           // true = скачивать только после входа
+// ============================================================================
+var $=function(i){return document.getElementById(i)};
+var ok=SB_URL.indexOf("http")==0,sb=ok?supabase.createClient(SB_URL,SB_KEY):null;
+var user=null,apps=[],cat="Все",editId=null;
+var DEMO=[{id:1,name:"Пример приложения",ver:"1.0",size:"25 МБ",descr:"Демо-карточка. Подключите Supabase.",icon:"🎮",category:"Игры",url:"#",downloads:0,created_at:new Date().toISOString()}];
+function esc(s){var d=document.createElement("div");d.textContent=s==null?"":s;return d.innerHTML}
+function hue(s){var h=0;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))%360;return h}
+function toast(t){var e=$("toast");e.textContent=t;e.style.display="block";setTimeout(function(){e.style.display="none"},2600)}
+function isAdmin(){return !!user&&ADMINS.some(function(a){return a.toLowerCase()==(user.email||"").toLowerCase()})}
+function ui(){
+var m=user&&user.user_metadata||{};
+$("ua").innerHTML=user?(m.avatar_url?'<img src="'+esc(m.avatar_url)+'" alt="">':'')+'<span>'+esc(m.name||m.user_name||user.email||"")+'</span><button class="g" id="lo">Выйти</button>':'<button id="li">Войти</button>';
+$("adm").style.display=isAdmin()?"block":"none";
+$("bn").innerHTML=ok?"":'<div class="banner">Демо-режим: вход и база не подключены. Вставьте ключи Supabase в index.html.</div>';
+render()}
+function render(){
+var t=$("q").value.toLowerCase(),cs=["Все"];
+apps.forEach(function(a){if(a.category&&cs.indexOf(a.category)<0)cs.push(a.category)});
+$("chips").innerHTML=cs.length>1?cs.map(function(c){return '<button class="chip'+(c==cat?' on':'')+'" data-c="'+esc(c)+'">'+esc(c)+'</button>'}).join(""):"";
+var f=apps.filter(function(a){return (cat=="Все"||a.category==cat)&&((a.name||"")+" "+(a.descr||"")).toLowerCase().indexOf(t)>-1});
+$("list").innerHTML=f.map(function(a){var n=a.name||"?";
+var tg=(a.ver?'<span class="tag">v'+esc(a.ver)+'</span>':'')+(a.size?'<span class="tag">'+esc(a.size)+'</span>':'')+(a.category?'<span class="tag">'+esc(a.category)+'</span>':'')+'<span class="tag">⬇ '+(a.downloads||0)+'</span>';
+return '<div class="c"><div class="i" style="background:hsl('+hue(n)+',65%,48%)">'+(a.icon?esc(a.icon):esc(n.charAt(0).toUpperCase()))+'</div><div class="m"><b>'+esc(n)+'</b>'+(a.descr?'<div class="d2">'+esc(a.descr)+'</div>':'')+'<div class="tags">'+tg+'</div></div><div class="act"><a class="d" data-id="'+a.id+'" href="'+esc(a.url)+'" target="_blank" rel="noopener">⬇ Скачать</a>'+(isAdmin()?'<button class="g" data-e="'+a.id+'">✎ Изменить</button><button class="r" data-d="'+a.id+'">✕ Удалить</button>':'')+'</div></div>'}).join("")||'<div class="empty">Ничего не найдено</div>'}
+async function load(){if(!sb){apps=DEMO;render();return}
+var r=await sb.from("apps").select("*").order("created_at",{ascending:false});
+if(r.error){toast("Не удалось загрузить список");return}apps=r.data;render()}
+function clr(){editId=null;["nm","ic","ct","ds","vr","sz","ur"].forEach(function(i){$(i).value=""});$("sv").textContent="Добавить";$("pt").textContent="Админ: добавить APK"}
+$("q").oninput=render;
+$("chips").onclick=function(e){var c=e.target.getAttribute("data-c");if(c){cat=c;render()}};
+$("ua").onclick=async function(e){if(e.target.id=="li")$("mod").style.display="grid";
+if(e.target.id=="lo"){await sb.auth.signOut();toast("Вы вышли")}};
+$("mc").onclick=function(){$("mod").style.display="none"};
+$("mod").onclick=async function(e){var p=e.target.getAttribute("data-p");
+if(!sb){toast("Сначала подключите Supabase");return}
+if(p){var r=await sb.auth.signInWithOAuth({provider:p,options:{redirectTo:location.origin+location.pathname}});if(r.error)toast(r.error.message)}};
+$("ml").onclick=async function(){var em=$("em").value.trim();if(!sb||!em){toast("Введите почту");return}
+var r=await sb.auth.signInWithOtp({email:em,options:{emailRedirectTo:location.origin+location.pathname}});
+toast(r.error?r.error.message:"Ссылка для входа отправлена на почту");if(!r.error)$("mod").style.display="none"};
+$("list").onclick=async function(e){var t=e.target,id=t.getAttribute("data-id"),d=t.getAttribute("data-d"),ed=t.getAttribute("data-e");
+if(id){if(REQUIRE_LOGIN&&!user){e.preventDefault();toast("Войдите, чтобы скачать");$("mod").style.display="grid";return}
+if(sb){sb.rpc("inc_downloads",{app_id:+id})}return}
+if(d&&confirm("Удалить?")){if(!sb){toast("Сначала подключите Supabase");return}var r=await sb.from("apps").delete().eq("id",+d);toast(r.error?"Нет прав":"Удалено");load()}
+if(ed){var a=apps.filter(function(x){return x.id==ed})[0];editId=a.id;$("nm").value=a.name||"";$("ic").value=a.icon||"";$("ct").value=a.category||"";$("ds").value=a.descr||"";$("vr").value=a.ver||"";$("sz").value=a.size||"";$("ur").value=a.url||"";$("sv").textContent="Сохранить";$("pt").textContent="Админ: изменить APK";$("adm").scrollIntoView({behavior:"smooth"})}};
+$("cl").onclick=clr;
+$("sv").onclick=async function(){var n=$("nm").value.trim(),u=$("ur").value.trim();
+if(!n||!/^https?:\/\//i.test(u)){toast("Нужны название и ссылка (http…)");return}
+var o={name:n,icon:$("ic").value.trim(),category:$("ct").value.trim(),descr:$("ds").value.trim(),ver:$("vr").value.trim(),size:$("sz").value.trim(),url:u};
+if(!sb){toast("Сначала подключите Supabase");return}var r=editId?await sb.from("apps").update(o).eq("id",editId):await sb.from("apps").insert(o);
+if(r.error){toast("Нет прав или ошибка");return}toast("Сохранено ✓");clr();load()};
+if(sb){sb.auth.getSession().then(function(r){user=r.data.session?r.data.session.user:null;ui()});
+sb.auth.onAuthStateChange(function(_e,s){user=s?s.user:null;ui()})}
+ui();load();
+</script>
+</body>
+</html>
